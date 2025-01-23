@@ -3646,6 +3646,7 @@ int integer cancel_button_image_alpha 0x7f0a0004
 int integer config_tooltipAnimTime 0x7f0a0005
 int integer design_snackbar_text_max_lines 0x7f0a0006
 int integer design_tab_indicator_anim_duration_ms 0x7f0a0007
+int integer grid_column_count 0x7f0a0044
 int integer hide_password_duration 0x7f0a0008
 int integer m3_badge_max_number 0x7f0a0009
 int integer m3_btn_anim_delay_ms 0x7f0a000a
@@ -4410,6 +4411,8 @@ int style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Day 0x7f110
 int style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Window_Fullscreen 0x7f110191
 int style ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Year 0x7f110192
 int style ShapeAppearanceOverlay_MaterialComponents_TextInputLayout_FilledBox 0x7f110193
+int style SportsDetailText 0x7f110467
+int style SportsTitle 0x7f110468
 int style TextAppearance_AppCompat 0x7f110194
 int style TextAppearance_AppCompat_Body1 0x7f110195
 int style TextAppearance_AppCompat_Body2 0x7f110196

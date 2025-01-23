@@ -4,6 +4,7 @@ package com.example.android.materialme;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Obtener el valor del grid
+
+        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
+
         // Initialize the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerView);
 
         // Set the Layout Manager.
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, gridColumnCount));
 
         // Initialize the ArrayList that will contain the data.
         mSportsData = new ArrayList<>();
@@ -69,10 +74,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void attachItemTouchHelper() {
+        // Obtener el valor del grid_column_count
+        int gridColumnCount = getResources().getInteger(R.integer.grid_column_count);
+
+        // Determinar las direcciones de swipe permitidas
+        int swipeDirs;
+        if (gridColumnCount > 1) {
+            swipeDirs = 0; // Deshabilitar swipe si hay más de una columna
+        } else {
+            swipeDirs = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT; // Swipe permitido en modo portrait
+        }
+
+        // Configurar ItemTouchHelper con la lógica para movimiento y swipe
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback =
                 new ItemTouchHelper.SimpleCallback(
-                        ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+                        ItemTouchHelper.UP | ItemTouchHelper.DOWN, // Movimiento vertical permitido
+                        swipeDirs // Direcciones de swipe dinámicas
                 ) {
                     @Override
                     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
@@ -92,9 +109,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
+        // Vincular el ItemTouchHelper al RecyclerView
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
+
 
     private void setupFab() {
         FloatingActionButton fab = findViewById(R.id.fab);

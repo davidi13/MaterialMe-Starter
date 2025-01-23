@@ -1,0 +1,6 @@
+<resources>
+    <style name="SportsTitle" parent="TextAppearance.AppCompat.Display1">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+    <style name="SportsDetailText" parent="TextAppearance.AppCompat.Headline" />
+</resources>
